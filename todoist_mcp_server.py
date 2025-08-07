@@ -6,7 +6,7 @@ This server provides tools for reading, creating, updating, and managing Todoist
 using the official Todoist Python SDK.
 
 Usage:
-    python todoist_server.py
+    python todoist_mcp_server.py
 
 Environment Variables:
     TODOIST_TOKEN: Your Todoist API bearer token (required)
@@ -17,7 +17,7 @@ Add this to your claude_desktop_config.json:
   "mcpServers": {
     "todoist": {
       "command": "python",
-      "args": ["/path/to/todoist_server.py"],
+      "args": ["/path/to/todoist_mcp_server.py"],
       "env": {
         "TODOIST_TOKEN": "your_bearer_token_here"
       }
