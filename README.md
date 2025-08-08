@@ -43,13 +43,6 @@ Using the requirements file:
 pip install -r requirements.txt
 ```
 
-Using uv (recommended):
-```bash
-uv init todoist-mcp-server
-cd todoist-mcp-server
-uv add "mcp>=1.2.0" "httpx>=0.25.0" "pydantic>=2.0.0"
-```
-
 ### 3. Get Your Todoist API Token
 1. Go to [Todoist Integrations](https://app.todoist.com/app/settings/integrations/developer)
 2. Create a new app or use an existing one
