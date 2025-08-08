@@ -35,7 +35,6 @@ import json
 from todoist_api_python.api import TodoistAPI
 from todoist_api_python.models import Task, Project, Label
 from mcp.server.fastmcp import FastMCP
-from pydantic import BaseModel, Field
 
 # Load environment variables from .env file, if it exists
 try:
@@ -53,16 +52,6 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 mcp = FastMCP("todoist-mcp-server")
-
-
-class TaskFilter(BaseModel):
-    """
-    Filter parameters for task queries.
-    """
-    project_id: Optional[str] = Field(None, description="Filter by project ID")
-    label_id: Optional[str] = Field(None, description="Filter by label ID")
-    filter_expr: Optional[str] = Field(None, description="Todoist filter expression")
-    lang: Optional[str] = Field("en", description="Language for filter parsing")
 
 
 _api: Optional[TodoistAPI] = None
