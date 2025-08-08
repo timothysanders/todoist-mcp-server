@@ -1,0 +1,17 @@
+[project]
+name = "todoist-mcp-server"
+version = "0.0.1"
+description = "A Model Context Protocol server for Todoist integration"
+authors = [{name = "Tim Sanders", email = "sanders.timothy.j@gmail.com"}]
+dependencies = [
+    "mcp>=1.2.0",
+    "httpx>=0.25.0",
+    "pydantic>=2.0.0"
+]
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0"
+]

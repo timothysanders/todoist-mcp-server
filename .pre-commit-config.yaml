@@ -1,0 +1,16 @@
+repos:
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  # Ruff version.
+  rev: v0.12.1
+  hooks:
+    # Run the linter.
+    - id: ruff-check
+
+- repo: local
+  hooks:
+    - id: pytest-check
+      name: pytest-check
+      entry: bash -c '.venv/bin/python -m pytest || ([ $? -eq 5 ] && exit 0 || exit $?)'
+      language: system
+      pass_filenames: false
+      always_run: true
