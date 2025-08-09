@@ -706,7 +706,7 @@ async def get_labels() -> str:
         logger.info("Fetching labels")
 
         labels_paginator = api.get_labels()
-        formatted_labels = [label_to_dict(label[0]) for label in labels_paginator]
+        formatted_labels = [label_to_dict(label) for label in list(labels_paginator)[0]]
 
         result = {
             "labels": formatted_labels,
