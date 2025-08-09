@@ -2,6 +2,9 @@
 All notable changes to the Todoist MCP server project will be documented in this file.
 
 ## [Unreleased]
+- Fixes for data processing bugs in `get_tasks`, `get_projects`, and `get_labels`
+- New unit tests covering `get_tasks`, `get_projects` and `get_labels`
+- README specifies branch naming conventions for project
 
 ## [0.0.1]
 ### Added

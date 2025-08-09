@@ -631,7 +631,7 @@ async def get_projects() -> str:
         logger.info("Fetching projects")
 
         projects_paginator = api.get_projects()
-        formatted_projects = [project_to_dict(project[0]) for project in projects_paginator]
+        formatted_projects = [project_to_dict(project) for project in list(projects_paginator)[0]]
 
         result = {
             "projects": formatted_projects,
@@ -706,7 +706,7 @@ async def get_labels() -> str:
         logger.info("Fetching labels")
 
         labels_paginator = api.get_labels()
-        formatted_labels = [label_to_dict(label[0]) for label in labels_paginator]
+        formatted_labels = [label_to_dict(label) for label in list(labels_paginator)[0]]
 
         result = {
             "labels": formatted_labels,
