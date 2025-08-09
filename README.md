@@ -186,6 +186,28 @@ todoist-mcp-server/
 └── README.md             # This file
 ```
 
+### Branch Naming Conventions
+**General Format**: `type/issue-number-brief-description`
+
+**Types**:
+- `feature/` - New functionality or enhancements
+- `bug/` - Bug fixes
+- `hotfix/` - Critical fixes
+- `docs/` - Documentation updates
+- `refactor/` - Code refactoring
+- `test/` - Adding or updating tests
+- `chore/` - Maintenance tasks
+
+#### Examples
+```text
+feature/23-add-project-creation
+bug/45-fix-task-completion-error
+docs/12-update-api-documentation
+refactor/67-restructure-task-handlers
+test/34-add-integration-tests
+hotfix/89-critical-auth-bug
+```
+
 ### Contributing
 1. Follow the existing code style with type hints and docstrings
 2. All functions should have comprehensive Numpy-style docstrings
