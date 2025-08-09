@@ -235,7 +235,7 @@ async def get_tasks(
                 ids=ids
             )
 
-        formatted_tasks = [task_to_dict(task[0]) for task in tasks_paginator]
+        formatted_tasks = [task_to_dict(task) for task in list(tasks_paginator)[0]]
 
         result = {
             "tasks": formatted_tasks,
