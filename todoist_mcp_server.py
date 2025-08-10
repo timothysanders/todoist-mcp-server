@@ -29,9 +29,10 @@ Add this to your claude_desktop_config.json:
 import os
 import sys
 import logging
-from typing import Dict, List, Optional, Any
+from typing import Annotated, Any, Dict, List, Optional
 import json
 
+from pydantic import Field
 from todoist_api_python.api import TodoistAPI
 from todoist_api_python.models import Task, Project, Label
 from mcp.server.fastmcp import FastMCP
@@ -604,6 +605,67 @@ async def get_task(task_id: str) -> str:
 
     except Exception as e:
         logger.error(f"Error getting task {task_id}: {str(e)}")
+        return json.dumps({"error": str(e)}, indent=2)
+
+
+@mcp.tool()
+async def create_project(
+    name: Annotated[str, Field(min_length=1, max_length=120)],
+    description: Annotated[str, Field(max_length=1024)] | None = None,
+    parent_id: str | None = None,
+    color: str | None = None,
+    is_favorite: bool | None = None,
+) -> str:
+    """
+    Create a new project in Todoist.
+
+    This tool creates a new project using the official Todoist Python SDK.
+
+    Parameters
+    ----------
+    name : Annotated[str, Field(min_length=1, max_length=120)]
+        The name of the new project to be created, note that this can be a maximum of 120 characters.
+    description : Annotated[str, Field(max_length=1024)] | None = None
+        The description of the new project, maximum 1024 characters.
+    parent_id : str | None = None
+        The ID of the parent project. If not set, project will be created at the root.
+    color : str | None = None
+        The color of the new project icon. If not set, project color will be set to the workspace default.
+        Color details may be found here https://developer.todoist.com/api/v1/#tag/Colors
+    is_favorite : bool | None = None
+        Whether the new project should be marked as a favorite or not.
+
+    Returns
+    -------
+    str
+        JSON string containing the created project information
+
+    Examples
+    --------
+    Create a basic project:
+        create_project("home-improvement")
+
+    Create a project with a specific color:
+        create_task("school-work", color="olive_green")
+
+    Create a project with a parent project:
+        create_project("reading-list", parent_id="project-parent")
+    """
+    try:
+        api = get_api()
+
+        logger.info(f"Creating new project: {name}")
+        project = api.add_project(
+            name=name,
+            description=description,
+            parent_id=parent_id,
+            color=color,
+            is_favorite=is_favorite
+        )
+        result = project_to_dict(project)
+        return json.dumps(result, indent=2, ensure_ascii=False, default=str)
+    except Exception as e:
+        logger.error(f"Error creating project {name}: {str(e)}")
         return json.dumps({"error": str(e)}, indent=2)
 
 
