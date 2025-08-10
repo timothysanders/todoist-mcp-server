@@ -74,7 +74,7 @@ def get_api() -> TodoistAPI:
     global _api
     if _api is None:
         token = os.getenv("TODOIST_TOKEN")
-        if not token:
+        if not token or not token.strip():
             raise ValueError("TODOIST_TOKEN environment variable is required")
         _api = TodoistAPI(token)
     return _api

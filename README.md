@@ -21,12 +21,13 @@ This MCP server provides the following tools for Todoist integration:
 - Todoist API token (bearer token)
 
 ## Installation
-### 1. Set up the Project
+### 1. Clone the Repo
 ```bash
-# Create project directory
-mkdir todoist-mcp-server
+git clone https://github.com/timothysanders/todoist-mcp-server.git
 cd todoist-mcp-server
-
+```
+### 2. Set up the Project
+```bash
 # Create virtual environment
 python -m venv venv
 
@@ -37,24 +38,24 @@ source venv/bin/activate
 venv\Scripts\activate
 ```
 
-### 2. Install Dependencies
+### 3. Install Dependencies
 Using the requirements file:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Get Your Todoist API Token
+### 4. Get Your Todoist API Token
 1. Go to [Todoist Integrations](https://app.todoist.com/app/settings/integrations/developer)
 2. Create a new app or use an existing one
 3. Copy your API token
 
-### 4. Configure Environment
+### 5. Configure Environment
 Create a `.env` file or set the environment variable:
 ```bash
 export TODOIST_TOKEN="your_bearer_token_here"
 ```
 
-Or create a `.env` file:
+Or create a `.env` file (using the sample `.env.example`):
 ```env
 TODOIST_TOKEN=your_bearer_token_here
 ```
