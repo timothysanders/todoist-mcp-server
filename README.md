@@ -13,6 +13,7 @@ This MCP server provides the following tools for Todoist integration:
 
 ### Project & Label Management
 - **`get_projects`** - Retrieve all projects
+- **`create_label`** - Create a new label
 - **`get_labels`** - Retrieve all labels
 
 ## Prerequisites
