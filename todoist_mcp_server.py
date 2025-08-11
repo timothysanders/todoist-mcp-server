@@ -746,6 +746,59 @@ async def get_project(project_id: str) -> str:
 
 
 @mcp.tool()
+async def create_label(
+    name: Annotated[str, Field(min_length=1, max_length=60)],
+    color: str | None = None,
+    is_favorite: bool | None = None,
+) -> str:
+    """
+    Create a new label in Todoist.
+
+    This tool creates a new label using the official Todoist Python SDK.
+
+    Parameters
+    ----------
+    name : Annotated[str, Field(min_length=1, max_length=60)]
+        The name of the new label to be created, note that this can be a maximum of 60 characters.
+    color : str | None = None
+        The color of the new label icon. If not set, label color will be set to the workspace default.
+        Color details may be found here https://developer.todoist.com/api/v1/#tag/Colors
+    is_favorite : bool | None = None
+        Whether the new label should be marked as a favorite or not.
+
+    Returns
+    -------
+    str
+        JSON string containing the created label information
+
+    Examples
+    --------
+    Create a basic label:
+        create_label("mcp")
+
+    Create a label with a specific color:
+        create_label("mcp", color="olive_green")
+
+    Create a label marked as a favorite:
+        create_label("mcp", is_favorite=True)
+    """
+    try:
+        api = get_api()
+
+        logger.info(f"Creating new label: {name}")
+        label = api.add_label(
+            name=name,
+            color=color,
+            is_favorite=is_favorite
+        )
+        result = label_to_dict(label)
+        return json.dumps(result, indent=2, ensure_ascii=False, default=str)
+    except Exception as e:
+        logger.error(f"Error creating label {name}: {str(e)}")
+        return json.dumps({"error": str(e)}, indent=2)
+
+
+@mcp.tool()
 async def get_labels() -> str:
     """
     Retrieve all labels from Todoist.
