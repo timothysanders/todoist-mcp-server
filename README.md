@@ -160,6 +160,16 @@ Create a new task.
 - `due_string` (optional): Natural language due date
 - `labels` (optional): List of label names
 
+### create_project
+Create a new project
+
+**Parameters:**
+- `name` (required): Name for new project
+- `description` (optional): Project description
+- `parent_id` (optional): The parent project to link the new project to
+- `color` (optional): The color to assign to the new project
+- `is_favorite` (optional): Whether to mark this project as a favorite
+
 ### Other Tools
 All tools return JSON responses and include comprehensive error handling.
 
