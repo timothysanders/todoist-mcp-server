@@ -13,6 +13,7 @@ This MCP server provides the following tools for Todoist integration:
 
 ### Project & Label Management
 - **`get_projects`** - Retrieve all projects
+- **`create_label`** - Create a new label
 - **`get_labels`** - Retrieve all labels
 
 ## Prerequisites
@@ -131,6 +132,7 @@ Once integrated with Claude, you can use natural language to interact with your 
 ### Projects and Labels
 - "Show me all my projects"
 - "List all available labels"
+- "Create a label with the color olive green and mark is as a favorite"
 
 ## API Reference
 ### get_tasks
@@ -169,6 +171,14 @@ Create a new project
 - `parent_id` (optional): The parent project to link the new project to
 - `color` (optional): The color to assign to the new project
 - `is_favorite` (optional): Whether to mark this project as a favorite
+
+### create_label
+Create a new label
+
+**Parameters:**
+- `name` (required): Name for the new label
+- `color` (optional): The color to assign to the new label
+- `is_favorite` (optional): Whether to mark this label as a favorite
 
 ### Other Tools
 All tools return JSON responses and include comprehensive error handling.

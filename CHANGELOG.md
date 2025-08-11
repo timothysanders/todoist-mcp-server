@@ -6,6 +6,9 @@ All notable changes to the Todoist MCP server project will be documented in this
 - **create_project tool** ([#2](https://github.com/timothysanders/todoist-mcp-server/issues/2))
   - Allows for the creation of new projects
   - Includes full unit test suite
+- **create_label tool** ([#3](https://github.com/timothysanders/todoist-mcp-server/issues/3))
+  - Allows for the creation of new labels
+  - Includes full unit test suite
 
 ## [0.0.2]
 ### Added
