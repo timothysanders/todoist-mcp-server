@@ -5,61 +5,30 @@ A Model Context Protocol (MCP) server that provides seamless integration with To
 This MCP server provides the following tools for Todoist integration:
 
 ### Task Management
+- **`get_task`** - Retrieve a specific task with filtering options
 - **`get_tasks`** - Retrieve tasks with powerful filtering options
 - **`create_task`** - Create new tasks with full parameter support
 - **`update_task`** - Update existing tasks
 - **`complete_task`** - Mark tasks as completed
+- **`reopen_task`** - Reopen a previously completed task
 - **`delete_task`** - Delete tasks permanently
 
-### Project & Label Management
+### Project Management
+- **`create_project`** - Create a new project
+- **`get_project`** - Retrieve a single project by ID
 - **`get_projects`** - Retrieve all projects
+
+### Label Management
 - **`create_label`** - Create a new label
 - **`get_labels`** - Retrieve all labels
+
+### Comments
+- **`get_comments`** - Retrieve comments associated with a task/project
 
 ## Prerequisites
 - Python 3.10 or higher
 - A Todoist account with API access
 - Todoist API token (bearer token)
-
-## Installation
-### 1. Clone the Repo
-```bash
-git clone https://github.com/timothysanders/todoist-mcp-server.git
-cd todoist-mcp-server
-```
-### 2. Set up the Project
-```bash
-# Create virtual environment
-python -m venv venv
-
-# Activate virtual environment
-# On macOS/Linux:
-source venv/bin/activate
-# On Windows:
-venv\Scripts\activate
-```
-
-### 3. Install Dependencies
-Using the requirements file:
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Get Your Todoist API Token
-1. Go to [Todoist Integrations](https://app.todoist.com/app/settings/integrations/developer)
-2. Create a new app or use an existing one
-3. Copy your API token
-
-### 5. Configure Environment
-Create a `.env` file or set the environment variable:
-```bash
-export TODOIST_TOKEN="your_bearer_token_here"
-```
-
-Or create a `.env` file (using the sample `.env.example`):
-```env
-TODOIST_TOKEN=your_bearer_token_here
-```
 
 ## Usage
 ### Running the Server Standalone
@@ -79,35 +48,35 @@ mcp dev todoist_mcp_server.py
 ```
 This will open a web interface where you can test all the tools.
 
-## Integration with Claude Desktop
-Add the following configuration to your `claude_desktop_config.json` file:
-
-### macOS
-Location: `~/Library/Application Support/Claude/claude_desktop_config.json`
-
-### Windows  
-Location: `%APPDATA%\Claude\claude_desktop_config.json`
-
-### Configuration
-```json
-{
-  "mcpServers": {
-    "todoist": {
-      "command": "/absolute/path/to/virtual/environment/python",
-      "args": ["/absolute/path/to/todoist_mcp_server.py"],
-      "env": {
-        "TODOIST_TOKEN": "your_bearer_token_here"
-      }
-    }
-  }
-}
+### Run Unit Tests
+To run unit tests, make sure you have installed the project requirements and then run the following command from the repository root
+```bash
+# Run all tests
+python -m pytest
+```
+To verify unit test coverage, run the following command
+```bash
+python -m pytest --cov=todoist_mcp_server
 ```
 
-**Important Notes:**
-- Use the absolute path to your `todoist_mcp_server.py` file
-- You may need to use the full path to your Python executable (e.g., `/path/to/venv/bin/python`)
-- On Windows, use double backslashes (`\\`) or forward slashes (`/`) in paths
-- After adding the configuration, restart Claude Desktop
+### Pre-commit Hooks
+This project utilizes the [pre-commit](https://pre-commit.com/) library to install and run pre-commit hooks.
+
+First, install pre-commit using pip
+```bash
+pip install pre-commit
+```
+Then use pre-commit to install the `.pre-commit-config.yaml` file
+```bash
+pre-commit install
+```
+To validate the installation, you can run either of the following commands
+```bash
+ls -la .git/hooks
+# look for `pre-commit` in the output
+
+pre-commit run --all-files
+```
 
 ## Tool Examples
 Once integrated with Claude, you can use natural language to interact with your Todoist:
